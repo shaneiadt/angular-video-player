@@ -21,20 +21,6 @@ body {
   font-size: 35px;
 }
 
-.player {
-  max-width: 80vw;
-  min-width: 800px;
-  border: 5px solid black;
-  border-radius: 10px;
-  background: black;
-  position: relative;
-  cursor: pointer;
-}
-
-video {
-  border-radius: 5px;
-}
-
 /* Containers */
 .show-controls {
   width: 100%;
@@ -193,6 +179,11 @@ select > option {
 
 /* Media Query: Large Smartphone (Vertical) */
 @media screen and (max-width: 600px) {
+  .player {
+    min-width: 0;
+    max-width: 95vw;
+  }
+
   .fas {
     font-size: 20px;
   }

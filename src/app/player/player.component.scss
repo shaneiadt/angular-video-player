@@ -1,0 +1,14 @@
+.player {
+  max-width: 80vw;
+  border: 5px solid black;
+  border-radius: 10px;
+  background: black;
+  position: relative;
+  cursor: pointer;
+}
+
+video {
+  border-radius: 5px;
+  width: 100%;
+  height: auto;
+}
