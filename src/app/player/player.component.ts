@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlayerComponent implements OnInit {
   video: HTMLVideoElement = document.createElement('video');
-  src: string = "https://pixabay.com/videos/download/video-31377_tiny.mp4?attachment"
+  src: string = "https://pixabay.com/videos/download/video-31377_tiny.mp4?attachment";
   isPlaying: Boolean = false;
   isFullscreen: Boolean = false;
   isMute: Boolean = false;
