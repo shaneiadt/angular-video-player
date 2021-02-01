@@ -1,8 +1,8 @@
 <div class="player">
-  <video
-    [src]="src"
-    class="video"
-    playsinline
-  ></video>
-  <app-controls (playPause)="onPlayPause()"></app-controls>
+  <video [src]="src" class="video" playsinline></video>
+  <app-controls
+    [video]="video"
+    (playPause)="onPlayPause()"
+    (playbackRate)="onPlaybackRate($event)"
+  ></app-controls>
 </div>

@@ -30,4 +30,8 @@ export class PlayerComponent implements OnInit {
     this.isPlaying = !this.isPlaying;
   }
 
+  onPlaybackRate(event: { target: { value: number } }) {
+    this.playbackSpeed = event.target.value;
+  }
+
 }
