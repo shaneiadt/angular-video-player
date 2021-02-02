@@ -15,15 +15,22 @@ export class ControlsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.video.addEventListener('play', () => {
-      this.isPlaying = true;
-    });
-    this.video.addEventListener('pause', () => {
-      this.isPlaying = false;
-    });
-    this.video.addEventListener('timeupdate', (e) => {
-      // console.log('DURATION CHANGE EVENT', e);
-    });
+    this.video.addEventListener('play', () => this.isPlaying = true);
+    this.video.addEventListener('pause', () => this.isPlaying = false);
+    this.video.addEventListener('ended', () => this.isPlaying = false);
+
+    this.video.addEventListener('canplay', this.updateProgress);
+    this.video.addEventListener('timeupdate', this.updateProgress);
+  }
+
+  updateProgress(event: Event) {
+    const vid = event.target as HTMLVideoElement;
+
+    const progressBar: HTMLDivElement | null = document.querySelector('.progress-bar');
+
+    if (!progressBar) return;
+
+    progressBar.style.width = `${(vid.currentTime / vid.duration) * 100}%`;
   }
 
   toggleFullscreen() {

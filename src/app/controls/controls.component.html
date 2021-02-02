@@ -10,7 +10,7 @@
             class="fas"
             [ngClass]="{ 'fa-pause': isPlaying, 'fa-play': !isPlaying }"
             (click)="playPause.emit()"
-            title="Play"
+            [title]="isPlaying ? 'Pause' : 'Play'"
             id="play-button"
           ></i>
         </div>

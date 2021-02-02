@@ -1,5 +1,5 @@
 <div class="player">
-  <video [src]="src" class="video" playsinline></video>
+  <video (click)="onPlayPause()" [src]="src" class="video" playsinline></video>
   <app-controls
     [video]="video"
     (playPause)="onPlayPause()"
