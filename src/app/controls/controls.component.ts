@@ -22,7 +22,7 @@ export class ControlsComponent implements OnInit {
       this.isPlaying = false;
     });
     this.video.addEventListener('timeupdate', (e) => {
-      console.log('DURATION CHANGE EVENT', e);
+      // console.log('DURATION CHANGE EVENT', e);
     });
   }
 
