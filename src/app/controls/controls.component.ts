@@ -23,7 +23,7 @@ export class ControlsComponent implements OnInit {
     this.video.addEventListener('timeupdate', this.updateProgress);
   }
 
-  updateProgress(event: Event) {
+  updateProgress = (event: Event) => {
     const vid = event.target as HTMLVideoElement;
 
     const progressBar: HTMLDivElement | null = document.querySelector('.progress-bar');
@@ -31,6 +31,17 @@ export class ControlsComponent implements OnInit {
     if (!progressBar) return;
 
     progressBar.style.width = `${(vid.currentTime / vid.duration) * 100}%`;
+
+    this.timeElapsed = this.displayTime(vid.currentTime);
+    this.timeDuration = this.displayTime(vid.duration);
+  }
+
+  displayTime(time: number) {
+    const minutes = Math.floor(time / 60);
+    let seconds = Math.floor(time % 60).toString();
+    seconds = parseInt(seconds) > 9 ? seconds : `0${seconds}`;
+
+    return `${minutes}:${seconds}`;
   }
 
   toggleFullscreen() {
