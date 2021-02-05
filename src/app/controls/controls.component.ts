@@ -8,6 +8,7 @@ export class ControlsComponent implements OnInit {
   @Output() playPause = new EventEmitter();
   @Output() playbackRate = new EventEmitter();
   @Input() video: HTMLElement = document.createElement('video');
+
   timeElapsed: string = "00:00";
   timeDuration: string = "2:30";
   isPlaying: boolean = false;
