@@ -24,6 +24,24 @@ export class ControlsComponent implements OnInit {
     this.video.addEventListener('timeupdate', this.updateProgress);
   }
 
+  seek(e: MouseEvent) {
+    const target: EventTarget | null = e.target;
+    const progressBar: HTMLDivElement | null = document.querySelector('.progress-bar');
+    const progressRange: HTMLDivElement | null = document.querySelector('.progress-range');
+
+    if (!target || !progressBar || !progressRange) return;
+
+    const { offsetWidth } = progressRange;
+    const { offsetX } = e;
+
+    const newTime = offsetX / offsetWidth;
+
+    progressBar.style.width = `${newTime * 100}%`;
+
+    const vid = this.video as HTMLVideoElement;
+    vid.currentTime = newTime * vid.duration;
+  }
+
   updateProgress = (event: Event) => {
     const vid = event.target as HTMLVideoElement;
 
