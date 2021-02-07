@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlayerComponent implements OnInit {
   video: HTMLVideoElement = document.createElement('video');
-  src: string = "https://pixabay.com/videos/download/video-31377_tiny.mp4?attachment";
+  src: string = "https://vod-progressive.akamaized.net/exp=1612719148~acl=%2A%2F465540197.mp4%2A~hmac=c35048c8ea0a09e3c210f146365dd79f7f24257ce0c587855e922ff261f16824/vimeo-prod-skyfire-std-us/01/332/6/151662242/465540197.mp4?filename=Cars+-+1900.mp4";
   isPlaying: Boolean = false;
   isFullscreen: Boolean = false;
   isMute: Boolean = false;
@@ -32,6 +32,7 @@ export class PlayerComponent implements OnInit {
 
   onPlaybackRate(event: { target: { value: number } }) {
     this.playbackSpeed = event.target.value;
+    this.video.playbackRate = this.playbackSpeed;
   }
 
 }

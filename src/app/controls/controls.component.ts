@@ -12,6 +12,7 @@ export class ControlsComponent implements OnInit {
   timeElapsed: string = "00:00";
   timeDuration: string = "2:30";
   isPlaying: boolean = false;
+  isMuted: boolean = false;
 
   constructor() { }
 
@@ -53,6 +54,55 @@ export class ControlsComponent implements OnInit {
 
     this.timeElapsed = this.displayTime(vid.currentTime);
     this.timeDuration = this.displayTime(vid.duration);
+  }
+
+  changeVolume(e: MouseEvent) {
+    const volumeRange: HTMLDivElement | null = document.querySelector('.volume-range');
+    const volumeBar: HTMLDivElement | null = document.querySelector('.volume-bar');
+    const volumeIcon: HTMLDivElement | null = document.querySelector('#volume-icon');
+
+    if (!volumeRange || !volumeBar || !volumeIcon) return;
+
+    let vol = e.offsetX / volumeRange.offsetWidth;
+
+    if (vol < 0.1) {
+      vol = 0;
+    }
+
+    if (vol > 0.9) {
+      vol = 1;
+    }
+
+    volumeBar.style.width = `${vol * 100}%`;
+
+    const vid = this.video as HTMLVideoElement;
+    vid.volume = vol;
+
+    volumeIcon.className = '';
+
+    if (vol > 0.7) {
+      volumeIcon.classList.add('fas', 'fa-volume-up');
+    } else if (vol < 0.7 && vol > 0) {
+      volumeIcon.classList.add('fas', 'fa-volume-down');
+    } else if (vol === 0) {
+      volumeIcon.classList.add('fas', 'fa-volume-off');
+    }
+  }
+
+  mute() {
+    const volumeIcon: HTMLDivElement | null = document.querySelector('#volume-icon');
+    const volumeBar: HTMLDivElement | null = document.querySelector('.volume-bar');
+
+    if (!volumeIcon || !volumeBar) return;
+
+    this.isMuted = !this.isMuted;
+
+    const vid = this.video as HTMLVideoElement;
+    vid.volume = this.isMuted ? 0 : 1;
+
+    volumeIcon.className = '';
+    volumeIcon.classList.add('fas', this.isMuted ? 'fa-volume-mute' : 'fa-volume-up');
+    volumeBar.style.width = this.isMuted ? '0%' : '100%';
   }
 
   displayTime(time: number) {
